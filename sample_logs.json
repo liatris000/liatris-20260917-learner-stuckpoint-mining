@@ -1,0 +1,86 @@
+[
+  {
+    "log_id": "L001",
+    "student_ref": "S014",
+    "unit_hint": "一次関数",
+    "correct": false,
+    "comment": "グラフの傾きを求める問題で、yの増加量とxの増加量を逆に割ってしまいました。式は立てられているのに答えが合わなくて悔しいです。"
+  },
+  {
+    "log_id": "L002",
+    "student_ref": "S021",
+    "unit_hint": "一次関数",
+    "correct": false,
+    "comment": "y=ax+bのaとbがそれぞれ何を表しているのか、最後まで自信が持てませんでした。graph自体は描けます。"
+  },
+  {
+    "log_id": "L003",
+    "student_ref": "S014",
+    "unit_hint": "分数の計算",
+    "correct": true,
+    "comment": "通分は前よりスムーズにできるようになった気がします。"
+  },
+  {
+    "log_id": "L004",
+    "student_ref": "S033",
+    "unit_hint": "分数の計算",
+    "correct": false,
+    "comment": "帯分数を仮分数に直すところで毎回止まってしまいます。計算自体は合っているのに、途中で書き間違えているかもしれません。"
+  },
+  {
+    "log_id": "L005",
+    "student_ref": "S002",
+    "unit_hint": "分数の計算",
+    "correct": false,
+    "comment": "約分を忘れて答えを間違えました。計算の手順は分かっているつもりです。"
+  },
+  {
+    "log_id": "L006",
+    "student_ref": "S021",
+    "unit_hint": "確率の基礎",
+    "correct": false,
+    "comment": "『少なくとも1つ』の問題文の意味を取り違えて、余事象を使わずに直接数えようとして時間切れになりました。"
+  },
+  {
+    "log_id": "L007",
+    "student_ref": "S045",
+    "unit_hint": "確率の基礎",
+    "correct": false,
+    "comment": "樹形図までは書けたのですが、場合の数を数え間違えました。単純な数え漏れだと思います。"
+  },
+  {
+    "log_id": "L008",
+    "student_ref": "S002",
+    "unit_hint": "確率の基礎",
+    "correct": true,
+    "comment": "余事象の考え方がやっと腑に落ちました。"
+  },
+  {
+    "log_id": "L009",
+    "student_ref": "S033",
+    "unit_hint": "一次関数",
+    "correct": false,
+    "comment": "文章題から式を立てるところでつまずきました。変化の割合という言葉の意味自体はわかっているつもりです。"
+  },
+  {
+    "log_id": "L010",
+    "student_ref": "S045",
+    "unit_hint": "分数の計算",
+    "correct": false,
+    "comment": "計算はできるのですが、時間内に終わらせられませんでした。見直しの時間もなかったです。"
+  },
+  {
+    "log_id": "L011",
+    "student_ref": "S014",
+    "unit_hint": "確率の基礎",
+    "correct": false,
+    "comment": "条件を読み飛ばして、聞かれていない確率を求めてしまいました。計算過程自体は合っています。"
+  },
+  {
+    "log_id": "L012",
+    "student_ref": "S002",
+    "unit_hint": "一次関数",
+    "correct": false,
+    "comment": "切片の意味がグラフのどこを指すのか曖昧なままでした。傾きの計算はできています。"
+  }
+]
