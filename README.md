@@ -1,42 +1,67 @@
 # 学習ログ つまずき構造化検出
 
-学習ログ(小テストの正誤 + 自由記述コメント)を Claude API の構造化出力(tool use)でパースし、
-「単元 x つまずき種別」の集計と静的 HTML レポートを出力するスクリプト。
+学習ログ(小テストの正誤 + 自由記述コメント)を Claude API の構造化出力(tool use)でパースし、「単元 x つまずき種別」の集計と静的 HTML レポートを出力するスクリプト。
 
-入力データはすべて合成データです。実在の個人・団体・学習履歴とは関係ありません。
+記事: https://zenn.dev/liatris/articles/20260917-learner-stuckpoint-mining
 
-## セットアップ
+入力データはすべて合成データ。実在の個人・団体・学習履歴とは関係ない。
+
+## 前提
+
+- Python 3(3.14.6 で確認。これより古い版は試していない)
+- `requirements.txt` の依存(`anthropic` / `pydantic` / `pytest`)
+- 実際のモデルで抽出するには Anthropic の API キー。`--demo` とテストはキーなしで動く
+
+## 動かし方
 
 ```bash
+git clone https://github.com/liatris000/liatris-20260917-learner-stuckpoint-mining.git
+cd liatris-20260917-learner-stuckpoint-mining
 pip install -r requirements.txt
-```
 
-## 使い方
+# API キーなし: 固定ルールのモック応答でレポートを作る
+python3 stuckpoint_mining.py --input sample_logs.json --output index.html --demo
 
-Claude API キーがある場合:
+# テスト(API キー不要)
+python3 -m pytest test_stuckpoint_mining.py -v
 
-```bash
+# API キーあり: 実際のモデルで抽出する
 export ANTHROPIC_API_KEY=sk-ant-...
 python3 stuckpoint_mining.py --input sample_logs.json --output index.html
 ```
 
-API キーが無くても、モック応答でレポート生成の動作だけ確認できます(`index.html` はこのモードで生成したものです):
+## 期待される出力
 
-```bash
-python3 stuckpoint_mining.py --input sample_logs.json --output index.html --demo
+`--demo`:
+
+```text
+✅ index.html に 12 件のレポートを出力しました
 ```
 
-## テスト
+リポジトリの `index.html` は、このモードで作ったもの(GitHub Pages: https://liatris000.github.io/liatris-20260917-learner-stuckpoint-mining/ )。
 
-`anthropic.Anthropic` クライアントをモックし、tool 定義の組み立てと `tool_use` ブロックのパース経路だけを確認します(モデルの生成品質そのものはテスト対象外)。
+テスト:
 
-```bash
-python3 -m pytest test_stuckpoint_mining.py -v
+```text
+test_stuckpoint_mining.py::test_extract_stuckpoint_parses_structured_output PASSED [ 33%]
+test_stuckpoint_mining.py::test_aggregate_counts_by_unit_and_category PASSED [ 66%]
+test_stuckpoint_mining.py::test_extract_stuckpoint_raises_when_tool_not_used PASSED [100%]
+============================== 3 passed ==============================
 ```
+
+## 確かめていない範囲
+
+- 実際のモデルで抽出した結果は、リポジトリに置いていない。`index.html` はモック応答で作ったもの
+- 分類(5 種のつまずき種別)が実データに対して当たるかは検証していない
+- テストで確かめているのは、tool 定義の組み立てと `tool_use` のパース経路まで
 
 ## ファイル構成
 
 - `stuckpoint_mining.py` — 抽出・集計・レポート生成のメインロジック
 - `test_stuckpoint_mining.py` — モックを使ったユニットテスト
-- `sample_logs.json` — 合成の学習ログサンプル(12件)
-- `index.html` — `--demo` モードで生成したサンプルレポート(GitHub Pages で公開)
+- `sample_logs.json` — 合成の学習ログサンプル(12 件)
+- `index.html` — `--demo` モードで生成したサンプルレポート
+
+## ライセンス
+
+MIT
