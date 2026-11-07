@@ -62,6 +62,10 @@ test_stuckpoint_mining.py::test_extract_stuckpoint_raises_when_tool_not_used PAS
 - `sample_logs.json` — 合成の学習ログサンプル(12 件)
 - `index.html` — `--demo` モードで生成したサンプルレポート
 
+## 記事
+
+https://zenn.dev/liatris/articles/20260917-learner-stuckpoint-mining
+
 ## ライセンス
 
 MIT

@@ -204,7 +204,7 @@ def _demo_client() -> Any:
         return ("other", 0.5, c[:20]) if not correct else ("concept_gap", 0.4, c[:20])
 
     class _FakeMessages:
-        def create(self, **kwargs):
+        def create(self, **kwargs: Any) -> SimpleNamespace:
             user_text = kwargs["messages"][0]["content"]
             unit_hint = user_text.split("単元(自己申告): ", 1)[1].split("\n", 1)[0]
             correct = "正解" in user_text.split("正誤: ", 1)[1].split("\n", 1)[0]
