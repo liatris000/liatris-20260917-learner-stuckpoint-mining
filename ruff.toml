@@ -1,0 +1,11 @@
+# 成果物の Python コードの lint 設定(zenn_create の templates/artifact から入る)
+line-length = 120
+target-version = "py311"
+
+[lint]
+# 文法・未使用・バグになりやすい書き方だけを見る。見た目の好みは問わない
+select = ["E", "F", "W", "B"]
+
+[lint.per-file-ignores]
+# HTML レポートの CSS を 1 行で書いている。折り返すと出力される HTML が変わるので、行の長さだけ見ない
+"stuckpoint_mining.py" = ["E501"]

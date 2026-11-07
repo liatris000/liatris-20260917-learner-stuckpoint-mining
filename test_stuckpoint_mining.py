@@ -16,7 +16,7 @@ class FakeMessages:
         self._payload = payload
         self.last_kwargs: dict | None = None
 
-    def create(self, **kwargs):
+    def create(self, **kwargs: object) -> SimpleNamespace:
         self.last_kwargs = kwargs
         return SimpleNamespace(content=[FakeToolUseBlock(self._tool_name, self._payload)])
 
@@ -26,7 +26,7 @@ class FakeClient:
         self.messages = FakeMessages(tool_name, payload)
 
 
-def test_extract_stuckpoint_parses_structured_output():
+def test_extract_stuckpoint_parses_structured_output() -> None:
     payload = {
         "unit": "一次関数",
         "category": "calculation_slip",
@@ -49,7 +49,7 @@ def test_extract_stuckpoint_parses_structured_output():
     assert client.messages.last_kwargs["tool_choice"] == {"type": "tool", "name": "submit_stuckpoint"}
 
 
-def test_aggregate_counts_by_unit_and_category():
+def test_aggregate_counts_by_unit_and_category() -> None:
     results = [
         {"stuckpoint": StuckpointRecord(unit="一次関数", category="concept_gap", confidence=0.6, evidence="a")},
         {"stuckpoint": StuckpointRecord(unit="一次関数", category="concept_gap", confidence=0.7, evidence="b")},
@@ -62,9 +62,9 @@ def test_aggregate_counts_by_unit_and_category():
     assert agg["分数の計算"]["calculation_slip"] == 1
 
 
-def test_extract_stuckpoint_raises_when_tool_not_used():
+def test_extract_stuckpoint_raises_when_tool_not_used() -> None:
     class NoToolMessages:
-        def create(self, **kwargs):
+        def create(self, **kwargs: object) -> SimpleNamespace:
             return SimpleNamespace(content=[SimpleNamespace(type="text", text="自由記述で返してしまった")])
 
     client = SimpleNamespace(messages=NoToolMessages())
